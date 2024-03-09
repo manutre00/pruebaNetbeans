@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author Manuel Trejos
@@ -26,23 +28,25 @@ public class JFInterfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jdp = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmRegistrar = new javax.swing.JMenu();
         jmiRegPersonas = new javax.swing.JMenuItem();
         jmVisualizar = new javax.swing.JMenu();
         jmiVisPersonas = new javax.swing.JMenuItem();
+        jmActualizar = new javax.swing.JMenu();
+        jmiActPersona = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jdpLayout = new javax.swing.GroupLayout(jdp);
+        jdp.setLayout(jdpLayout);
+        jdpLayout.setHorizontalGroup(
+            jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jdpLayout.setVerticalGroup(
+            jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 277, Short.MAX_VALUE)
         );
 
@@ -70,17 +74,29 @@ public class JFInterfaz extends javax.swing.JFrame {
 
         jMenuBar1.add(jmVisualizar);
 
+        jmActualizar.setText("Actualizar");
+
+        jmiActPersona.setText("Persona");
+        jmiActPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiActPersonaActionPerformed(evt);
+            }
+        });
+        jmActualizar.add(jmiActPersona);
+
+        jMenuBar1.add(jmActualizar);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdp)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdp)
         );
 
         pack();
@@ -88,22 +104,35 @@ public class JFInterfaz extends javax.swing.JFrame {
 
     private void jmiRegPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegPersonasActionPerformed
         JIFRegistrarPersona jifRegPer = new JIFRegistrarPersona();
-        this.jDesktopPane1.add(jifRegPer);
+        this.jdp.add(jifRegPer);
         jifRegPer.setVisible(true);
        
     }//GEN-LAST:event_jmiRegPersonasActionPerformed
 
     private void jmiVisPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVisPersonasActionPerformed
         JIFMostrarPersonas jifMostrarP = new JIFMostrarPersonas();
-        this.jDesktopPane1.add(jifMostrarP);
+        this.jdp.add(jifMostrarP);
         jifMostrarP.setVisible(true);
     }//GEN-LAST:event_jmiVisPersonasActionPerformed
 
+    private void jmiActPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiActPersonaActionPerformed
+        JIFPersonToUpdate jifPtU = new JIFPersonToUpdate(this);
+        this.jdp.add(jifPtU);
+        jifPtU.setVisible(true);
+    }//GEN-LAST:event_jmiActPersonaActionPerformed
+
+    public JDesktopPane getJdp() {
+        return jdp;
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JDesktopPane jdp;
+    private javax.swing.JMenu jmActualizar;
     private javax.swing.JMenu jmRegistrar;
     private javax.swing.JMenu jmVisualizar;
+    private javax.swing.JMenuItem jmiActPersona;
     private javax.swing.JMenuItem jmiRegPersonas;
     private javax.swing.JMenuItem jmiVisPersonas;
     // End of variables declaration//GEN-END:variables

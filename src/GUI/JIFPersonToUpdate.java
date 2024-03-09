@@ -4,14 +4,21 @@
  */
 package GUI;
 
+import Business.PersonaBusiness;
+import Domain.Persona;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manuel Trejos
  */
 public class JIFPersonToUpdate extends javax.swing.JInternalFrame {
-    
+
     private JFInterfaz principal;
-    
+
     public JIFPersonToUpdate(JFInterfaz principal) {
         this.principal = principal;
         initComponents();
@@ -28,20 +35,21 @@ public class JIFPersonToUpdate extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jtfID = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbtnAceptar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
+        setResizable(true);
         setTitle("Actualizar");
         setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Digite el ID de la persona que desea actualizar:");
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnAceptar.setText("Aceptar");
+        jbtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnAceptarActionPerformed(evt);
             }
         });
 
@@ -52,7 +60,7 @@ public class JIFPersonToUpdate extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(jbtnAceptar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)))
@@ -66,23 +74,37 @@ public class JIFPersonToUpdate extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbtnAceptar)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        JIFUpdateInterface jifInterface = new JIFUpdateInterface();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void jbtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAceptarActionPerformed
+        try {
+            PersonaBusiness pb = new PersonaBusiness();
+            Persona person = pb.buscarPersona(this.jtfID.getText());
+            if (person instanceof Persona) {
+                this.setVisible(false);
+                JIFUpdateInterface jifInterface = new JIFUpdateInterface();
+                this.principal.getJdp().add(jifInterface);
+                jifInterface.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane,
+                        "Persona no encontrada",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(JIFPersonToUpdate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbtnAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jbtnAceptar;
     private javax.swing.JTextField jtfID;
     // End of variables declaration//GEN-END:variables
 }

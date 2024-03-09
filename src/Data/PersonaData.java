@@ -88,6 +88,22 @@ public class PersonaData {
     }//eliminarPersona 
    
     
-    
-    
+    /**
+     * 
+     * @param ID 人のID
+     * @return 探しているの人
+     * @throws IOException 
+     */
+    public Persona buscarPersona(String ID) throws IOException{
+        List<Persona> personas = readPersonas();
+        Persona persona = null;
+        for (Persona p : personas) {
+            if(p.getID().equalsIgnoreCase(ID)){
+                persona = p;
+                break;
+            }
+        }//for
+        return persona;
+    }//buscarPersona
+     
 } //class

@@ -46,5 +46,9 @@ public class PersonaBusiness {
         } //for
         return res;
     }//comprobarCaracteres
+    
+     public Persona buscarPersona(String ID) throws IOException{
+         return this.pd.buscarPersona(ID);
+     }//buscarPersona
 
 } //class
