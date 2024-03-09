@@ -4,16 +4,19 @@
  */
 package GUI;
 
+import Business.PersonaBusiness;
+import Domain.Persona;
+
 /**
  *
  * @author Manuel Trejos
  */
 public class JIFUpdateInterface extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form JIFUpdateInterface
-     */
-    public JIFUpdateInterface() {
+    private JIFPersonToUpdate JIFpToBeUpdt;
+    
+    public JIFUpdateInterface(JIFPersonToUpdate pToBeUpdt) {
+        this.JIFpToBeUpdt = pToBeUpdt;
         initComponents();
     }
 
@@ -96,7 +99,14 @@ public class JIFUpdateInterface extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnActualizarActionPerformed
-        
+        PersonaBusiness pb = new PersonaBusiness();
+        boolean update = pb.actualizarPersona(
+                this.JIFpToBeUpdt.getPerson(), 
+                new Persona(this.jtfNombre.getText(), 
+                        this.jtfID.getText(), 
+                        this.jtfFechaInicio.getText()
+                )
+        );
     }//GEN-LAST:event_jbtnActualizarActionPerformed
 
 
