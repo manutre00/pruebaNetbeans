@@ -88,6 +88,22 @@ public class PersonaData {
     }//eliminarPersona 
    
     
+    
+    
+    /**
+     * 
+     * @param pToBeUpdt Person to be updated
+     * @param pUpdt Person updated
+     * @return boolean
+     */
+    
+    public boolean actualizarPersona (Persona pToBeUpdt, Persona pUpdt){
+        pToBeUpdt.setID(pUpdt.getID());
+        pToBeUpdt.setNombre(pUpdt.getNombre());
+        pToBeUpdt.setFechaInicioLab(pUpdt.getFechaInicioLab());
+        return true;
+    }//actualizarPersona
+     
     /**
      * 
      * @param ID 人のID
